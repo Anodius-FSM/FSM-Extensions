@@ -8,7 +8,7 @@
   "outletPositions": [
 		"SHELL_HOME_SCREEN"
 	],
-  "extensionPolicies": [
+  "extensionAttributes": [
     "allow-downloads"
   ],
   "shellNavigation": {
