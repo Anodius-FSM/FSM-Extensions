@@ -271,7 +271,7 @@
     const unifiedPersonId = (respUniPerIdBody.data && respUniPerIdBody.data.length > 0 ) ? respUniPerIdBody.data[0].unifiedPersonId : '';  
     
     const responseOrgLevel = await fetch(
-      `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonId}&includeSubLevels=false`,
+      `https://eu.coresuite.com/cloud-org-level-service/api/v2/levels/allocations/${unifiedPersonId}`,
       {
         method: 'GET',
         mode: 'no-cors',
