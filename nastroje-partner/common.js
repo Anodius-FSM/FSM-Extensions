@@ -231,6 +231,9 @@
     /**
      * 28.12.2022
      */
+
+    const context = await common.getContext();
+
     const responseUnifiedPersonId = await fetch(
       'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
