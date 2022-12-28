@@ -255,7 +255,7 @@
         }),
       },
     );
-    console.log('responseUnifiedPersonId:: ', responseUnifiedPersonId);
+    console.log('responseUnifiedPersonId:: ', await responseUnifiedPersonId.json());
 /*
     const responseOrgLevel = await fetch(
       `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=6F931F3F-F341-4E96-BC7B-D7D7ADA07B13&includeSubLevels=false`
