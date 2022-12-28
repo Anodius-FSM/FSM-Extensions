@@ -57,10 +57,6 @@
     const context = await common.getContext();
     return {
       'Accept': 'application/json',
-      'Authorization': `Bearer ${context.auth.access_token}`,
-      'Content-Type': 'application/json',
-      'X-Client-ID': CLIENT_ID,
-      'X-Client-Version': CLIENT_VERSION,
       'X-Account-ID': context.accountId,
       'X-Company-ID': context.companyId,
     };
@@ -278,7 +274,7 @@
         headers: await common.getHeadersForOrgLevel(),
       },
     );
-
+    console.log('getHeadersFor... changed')
     const orgLevelBody = await responseOrgLevel.json();
     console.log({orgLevelBody});
 
