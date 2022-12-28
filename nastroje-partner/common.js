@@ -52,6 +52,19 @@
       'X-Client-Version': CLIENT_VERSION,
     };
   }
+
+  async function getHeadersForOrgLevel() {
+    const context = await common.getContext();
+    return {
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${context.auth.access_token}`,
+      'Content-Type': 'application/json',
+      'X-Client-ID': CLIENT_ID,
+      'X-Client-Version': CLIENT_VERSION,
+      'X-Account-ID': context.accountId,
+      'X-Company-ID': context.companyId,
+    };
+  }
   
   async function getSearchParams() {
     const context = await common.getContext();
@@ -262,7 +275,7 @@
       {
         method: 'GET',
         mode: 'no-cors',
-        headers: await common.getHeaders(),
+        headers: await common.getHeadersForOrgLevel(),
       },
     );
 
