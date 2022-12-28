@@ -228,6 +228,41 @@
       return canAccessUdoMetaResult;
     }
 
+    /**
+     * 28.12.2022
+     */
+    const responseUnifiedPersonId = await fetch(
+      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+        ...await common.getSearchParams(),
+        dtos: 'UnifiedPerson.12',
+      }),
+      {
+        method: 'POST',
+        headers: await common.getHeaders(),
+        body: JSON.stringify({
+          query: `
+            SELECT 
+              up.id as unifiedPersonId 
+            FROM UnifiedPerson up 
+            WHERE up.userName = '${context.user}'
+            LIMIT 1
+          `,
+        }),
+      },
+    );
+    console.log('lorem ipsum')
+    console.log('responseUnifiedPersonId:: ', await responseUnifiedPersonId.json());
+/*
+    const responseOrgLevel = await fetch(
+      `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=6F931F3F-F341-4E96-BC7B-D7D7ADA07B13&includeSubLevels=false`
+    );
+*/
+
+
+
+
+
+
     const response = await fetch(
       'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
