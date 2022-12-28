@@ -253,13 +253,21 @@
         }),
       },
     );
-    console.log('lorem ipsum')
-    console.log('responseUnifiedPersonId:: ', await responseUnifiedPersonId.json());
-/*
+
+    const respUniPerIdBody =  await responseUnifiedPersonId.json();
+    const unifiedPersonId = (respUniPerIdBody.data && respUniPerIdBody.data.length > 0 ) ? respUniPerIdBody.data[0].unifiedPersonId : '';  
+    
     const responseOrgLevel = await fetch(
-      `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=6F931F3F-F341-4E96-BC7B-D7D7ADA07B13&includeSubLevels=false`
+      `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonId}&includeSubLevels=false`,
+      {
+        method: 'GET',
+        headers: await common.getHeaders(),
+      },
     );
-*/
+
+    const orgLevelBody = await responseOrgLevel.json();
+    console.log({orgLevelBody});
+
 
 
 
