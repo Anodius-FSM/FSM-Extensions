@@ -261,6 +261,7 @@
       `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonId}&includeSubLevels=false`,
       {
         method: 'GET',
+        mode: 'no-cors',
         headers: await common.getHeaders(),
       },
     );
