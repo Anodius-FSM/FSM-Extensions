@@ -59,8 +59,6 @@
       'Accept': 'application/json',
       'Authorization': `Bearer ${context.auth.access_token}`,
       'Content-Type': 'application/json',
-      'X-Client-ID': CLIENT_ID,
-      'X-Client-Version': CLIENT_VERSION, 
       'X-Account-ID': context.accountId,
       'X-Company-ID': context.companyId,
     };
@@ -280,7 +278,7 @@
         headers: await common.getHeadersForOrgLevel(),
       },
     );
-    console.log('getHeadersFor... changed again 3');
+    console.log('getHeadersFor... changed again 4');
     //let hhh = await common.getHeadersForOrgLevel();
     console.log('headers: ', hhh);
     const orgLevelBody = await responseOrgLevel.json();
