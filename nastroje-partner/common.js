@@ -55,15 +55,15 @@
 
   async function getHeadersForOrgLevel() {
     const context = await common.getContext();
-    return {
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${context.auth.access_token}`,
+    return [
+      'Accept: application/json',
+    /*  'Authorization': `Bearer ${context.auth.access_token}`,
       'Content-Type': 'application/json',
       'X-Client-ID': CLIENT_ID,
-      'X-Client-Version': CLIENT_VERSION,
-      'X-Account-ID': context.accountId,
-      'X-Company-ID': context.companyId,
-    };
+      'X-Client-Version': CLIENT_VERSION, */
+      `X-Account-ID: ${context.accountId}`,
+      `X-Company-ID: ${context.companyId}`,
+    ];
   }
   
   async function getSearchParams() {
@@ -271,16 +271,17 @@
     const unifiedPersonId = (respUniPerIdBody.data && respUniPerIdBody.data.length > 0 ) ? respUniPerIdBody.data[0].unifiedPersonId : ''; 
     const unifiedPersonIdWithDashes = unifiedPersonId.substr(0,8) + '-' + unifiedPersonId.substr(8, 4) + '-' + unifiedPersonId.substr(12,4) + '-' + unifiedPersonId.substr(16,4) + '-' + unifiedPersonId.substr(20,12);  
     //https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=B78E5239-34A1-475E-AEF3-99329C68203A&includeSubLevels=false
+    let hhh = await common.getHeadersForOrgLevel();
     const responseOrgLevel = await fetch(
       `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
       {
         method: 'GET',
         mode: 'no-cors',
-        headers: await common.getHeadersForOrgLevel(),
+        headers: {...hhh},
       },
     );
-    console.log('getHeadersFor... changed again 1');
-    let hhh = await common.getHeadersForOrgLevel();
+    console.log('getHeadersFor... changed again 2');
+    //let hhh = await common.getHeadersForOrgLevel();
     console.log('headers: ', hhh);
     const orgLevelBody = await responseOrgLevel.json();
     console.log({orgLevelBody});
