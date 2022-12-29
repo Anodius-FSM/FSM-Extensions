@@ -270,15 +270,20 @@
     const unifiedPersonId = (respUniPerIdBody.data && respUniPerIdBody.data.length > 0 ) ? respUniPerIdBody.data[0].unifiedPersonId : ''; 
     const unifiedPersonIdWithDashes = unifiedPersonId.substr(0,8) + '-' + unifiedPersonId.substr(8, 4) + '-' + unifiedPersonId.substr(12,4) + '-' + unifiedPersonId.substr(16,4) + '-' + unifiedPersonId.substr(20,12);  
     //https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=B78E5239-34A1-475E-AEF3-99329C68203A&includeSubLevels=false
+    // unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`
     let hhh = await common.getHeadersForOrgLevel();
     const responseOrgLevel = await fetch(
-      `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
+      'https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?', + new URLSearchParams({
+        unifiedPersonId: unifiedPersonIdWithDashes,
+        includeSubLevels: false,
+      }),
       {
         method: 'GET',
+        mode: 'no-cors',
         headers: await common.getHeadersForOrgLevel(),
       },
     );
-    console.log('getHeadersFor... changed again 6 - cors 2');
+    console.log('getHeadersFor... changed again 7 - cors 3 - no-cors');
     //let hhh = await common.getHeadersForOrgLevel(); mode: 'no-cors',
     console.log('headers: ', hhh);
     const orgLevelBody = await responseOrgLevel.json();
