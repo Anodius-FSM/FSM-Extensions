@@ -279,7 +279,7 @@
       `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
       {
         method: 'GET',
-        mode: 'no-cors',
+        mode: 'cors',
         headers: await common.getHeadersForOrgLevel(),
       },
     );
