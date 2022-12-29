@@ -273,13 +273,13 @@
     //https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=B78E5239-34A1-475E-AEF3-99329C68203A&includeSubLevels=false
     // unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`
     let hhh = await common.getHeadersForOrgLevel();
-    console.log('headers before fetch no referrer: ', hhh)
+    console.log('headers before fetch origin-when-cross-origin: ', hhh)
 
     const responseOrgLevel = await fetch(
       `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
       {
         method: 'GET',
-        referrerPolicy: 'no-referrer-when-downgrade',
+        referrerPolicy: 'origin-when-cross-origin',
         headers: await common.getHeadersForOrgLevel(),
       },
     );
