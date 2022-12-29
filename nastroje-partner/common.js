@@ -56,6 +56,7 @@
   async function getHeadersForOrgLevel() {
     const context = await common.getContext();
     return {
+      'Access-Control-Allow-Origin': 'https://tomi639.github.io',
       'Accept': 'application/json',
       'Authorization': `Bearer ${context.auth.access_token}`,
       'Content-Type': 'application/json',
@@ -277,7 +278,7 @@
         headers: await common.getHeadersForOrgLevel(),
       },
     );
-    console.log('getHeadersFor... changed again 5 - cors');
+    console.log('getHeadersFor... changed again 6 - cors 2');
     //let hhh = await common.getHeadersForOrgLevel(); mode: 'no-cors',
     console.log('headers: ', hhh);
     const orgLevelBody = await responseOrgLevel.json();
