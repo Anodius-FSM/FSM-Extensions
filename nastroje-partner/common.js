@@ -280,15 +280,7 @@
       {
         method: 'POST',
         mode: 'no-cors',
-        headers: {
-          'Accept': 'application/json',
-      'Authorization': 'Bearer 47508bf0-f72f-43ab-88ff-385d35595fb6',
-      'Content-Type': 'application/json',
-      'X-Account-ID': '94277',
-      'X-Company-ID': '106840',
-      'X-Client-ID': CLIENT_ID,
-      'X-Client-Version': CLIENT_VERSION,
-        }
+        headers: await common.getHeadersForOrgLevel(),
       },
     );
     console.log('getHeadersFor... changed again 8 - cors 3 - no-cors');
