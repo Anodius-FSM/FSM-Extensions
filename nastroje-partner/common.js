@@ -271,10 +271,11 @@
     //https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=B78E5239-34A1-475E-AEF3-99329C68203A&includeSubLevels=false
     // unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`
     let hhh = await common.getHeadersForOrgLevel();
+    
     const responseOrgLevel = await fetch(
       'https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?', + new URLSearchParams({
         unifiedPersonId: unifiedPersonIdWithDashes,
-        includeSubLevels: false,
+        includeSubLevels: 'false',
       }),
       {
         method: 'GET',
@@ -282,7 +283,7 @@
         headers: await common.getHeadersForOrgLevel(),
       },
     );
-    console.log('getHeadersFor... changed again 7 - cors 3 - no-cors');
+    console.log('getHeadersFor... changed again 8 - cors 3 - no-cors');
     //let hhh = await common.getHeadersForOrgLevel(); mode: 'no-cors',
     console.log('headers: ', hhh);
     const orgLevelBody = await responseOrgLevel.json();
