@@ -278,7 +278,7 @@
     const responseOrgLevel = await fetch(
       `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
       {
-        method: 'POST',
+        method: 'GET',
         mode: 'no-cors',
         headers: await common.getHeadersForOrgLevel(),
       },
