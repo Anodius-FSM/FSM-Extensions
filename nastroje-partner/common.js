@@ -61,6 +61,8 @@
       'Content-Type': 'application/json',
       'X-Account-ID': context.accountId,
       'X-Company-ID': context.companyId,
+      'X-Client-ID': CLIENT_ID,
+      'X-Client-Version': CLIENT_VERSION,
     };
   }
   
@@ -271,14 +273,13 @@
     //https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=B78E5239-34A1-475E-AEF3-99329C68203A&includeSubLevels=false
     // unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`
     let hhh = await common.getHeadersForOrgLevel();
-    console.log('headers before fetch: ', hhh)
+    console.log('headers before fetch XXX: ', hhh)
     const responseOrgLevel = await fetch(
       `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
       {
         method: 'GET',
         mode: 'no-cors',
         headers: await common.getHeadersForOrgLevel(),
-        body: JSON.stringify(''),
       },
     );
     console.log('getHeadersFor... changed again 8 - cors 3 - no-cors');
