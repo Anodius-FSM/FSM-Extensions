@@ -55,15 +55,15 @@
 
   async function getHeadersForOrgLevel() {
     const context = await common.getContext();
-    return [
-      'Accept: application/json',
-    /*  'Authorization': `Bearer ${context.auth.access_token}`,
+    return {
+      'Accept': application/json,
+      'Authorization': `Bearer ${context.auth.access_token}`,
       'Content-Type': 'application/json',
       'X-Client-ID': CLIENT_ID,
-      'X-Client-Version': CLIENT_VERSION, */
-      `X-Account-ID: ${context.accountId}`,
-      `X-Company-ID: ${context.companyId}`,
-    ];
+      'X-Client-Version': CLIENT_VERSION, 
+      'X-Account-ID': context.accountId,
+      'X-Company-ID': context.companyId,
+    };
   }
   
   async function getSearchParams() {
@@ -277,10 +277,10 @@
       {
         method: 'GET',
         mode: 'no-cors',
-        headers: {...hhh},
+        headers: await common.getHeadersForOrgLevel(),
       },
     );
-    console.log('getHeadersFor... changed again 2');
+    console.log('getHeadersFor... changed again 3');
     //let hhh = await common.getHeadersForOrgLevel();
     console.log('headers: ', hhh);
     const orgLevelBody = await responseOrgLevel.json();
