@@ -56,7 +56,7 @@
   async function getHeadersForOrgLevel() {
     const context = await common.getContext();
     return {
-      'Accept': application/json,
+      'Accept': 'application/json',
       'Authorization': `Bearer ${context.auth.access_token}`,
       'Content-Type': 'application/json',
       'X-Client-ID': CLIENT_ID,
