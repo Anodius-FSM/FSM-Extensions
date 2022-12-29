@@ -56,7 +56,6 @@
   async function getHeadersForOrgLevel() {
     const context = await common.getContext();
     return {
-      'Access-Control-Allow-Origin': 'https://tomi639.github.io',
       'Accept': 'application/json',
       'Authorization': `Bearer ${context.auth.access_token}`,
       'Content-Type': 'application/json',
