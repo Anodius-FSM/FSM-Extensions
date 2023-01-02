@@ -276,14 +276,15 @@
     console.log('headers before fetch origin-when-cross-origin: ', hhh)
  // `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
     const responseOrgLevel = await fetch(
-      `https://eu.coresuite.com/cloud-org-level-service/api/v2/levels/allocations/${unifiedPersonIdWithDashes}`,
+      `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
       {
         method: 'GET',
+        credentials: 'include',
         /* referrerPolicy: 'origin-when-cross-origin', */
         headers: await common.getHeadersForOrgLevel(),
       },
     );
-    console.log('getHeadersFor... changed again 8 - cors 3 - no-cors');
+    console.log('getHeadersFor... with credentials');
     //let hhh = await common.getHeadersForOrgLevel(); mode: 'no-cors',
     console.log('headers: ', hhh);
     const orgLevelBody = await responseOrgLevel.json();
