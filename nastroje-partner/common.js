@@ -58,7 +58,7 @@
     return {
       'Accept': 'application/json',
       'Authorization': `Bearer ${context.auth.access_token}`,
-      'Content-Type': 'application/json',
+     /* 'Content-Type': 'application/json',*/
       'X-Account-ID': context.accountId,
       'X-Company-ID': context.companyId,
       'X-Client-ID': CLIENT_ID,
