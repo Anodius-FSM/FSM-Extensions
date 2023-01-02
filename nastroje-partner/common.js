@@ -56,7 +56,7 @@
   async function getHeadersForOrgLevel() {
     const context = await common.getContext();
     return {
-      'Accept': 'application/json',
+      /*'Accept': 'application/json',*/
       'Authorization': `Bearer ${context.auth.access_token}`,
      /* 'Content-Type': 'application/json',*/
       'X-Account-ID': context.accountId,
@@ -273,13 +273,13 @@
     //https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=B78E5239-34A1-475E-AEF3-99329C68203A&includeSubLevels=false
     // unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`
     let hhh = await common.getHeadersForOrgLevel();
-    console.log('headers  using credentials: ', hhh)
+    console.log('headers  no credentials: ', hhh)
  // `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
     const responseOrgLevel = await fetch(
       `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
       {
         method: 'GET',
-        credentials: 'include',
+       /* credentials: 'include', */
         /* referrerPolicy: 'origin-when-cross-origin', */
         headers: await common.getHeadersForOrgLevel(),
       },
