@@ -52,6 +52,19 @@
       'X-Client-Version': CLIENT_VERSION,
     };
   }
+
+  async function getHeadersForOrgLevel() {
+    const context = await common.getContext();
+    return {
+      /*'Accept': 'application/json',*/
+      'Authorization': `Bearer ${context.auth.access_token}`,
+     /* 'Content-Type': 'application/json',*/
+      'X-Account-ID': context.accountId,
+      'X-Company-ID': context.companyId,
+      'X-Client-ID': CLIENT_ID,
+      'X-Client-Version': CLIENT_VERSION,
+    };
+  }
   
   async function getSearchParams() {
     const context = await common.getContext();
@@ -228,6 +241,57 @@
       return canAccessUdoMetaResult;
     }
 
+    /**
+     * 28.12.2022
+     */
+/*
+    const context = await common.getContext();
+
+    const responseUnifiedPersonId = await fetch(
+      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+        ...await common.getSearchParams(),
+        dtos: 'UnifiedPerson.12',
+      }),
+      {
+        method: 'POST',
+        headers: await common.getHeaders(),
+        body: JSON.stringify({
+          query: `
+            SELECT 
+              up.id as unifiedPersonId 
+            FROM UnifiedPerson up 
+            WHERE up.userName = '${context.user}'
+            LIMIT 1
+          `,
+        }),
+      },
+    );
+
+    const respUniPerIdBody =  await responseUnifiedPersonId.json();
+    const unifiedPersonId = (respUniPerIdBody.data && respUniPerIdBody.data.length > 0 ) ? respUniPerIdBody.data[0].unifiedPersonId : ''; 
+    const unifiedPersonIdWithDashes = unifiedPersonId.substr(0,8) + '-' + unifiedPersonId.substr(8, 4) + '-' + unifiedPersonId.substr(12,4) + '-' + unifiedPersonId.substr(16,4) + '-' + unifiedPersonId.substr(20,12);  
+    //https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=B78E5239-34A1-475E-AEF3-99329C68203A&includeSubLevels=false
+    // unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`
+    let hhh = await common.getHeadersForOrgLevel();
+    console.log('headers  no credentials: ', hhh)
+ // `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
+    const responseOrgLevel = await fetch(
+      `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
+      {
+        method: 'GET',
+       /* credentials: 'include', */
+        /* referrerPolicy: 'origin-when-cross-origin', 
+        headers: await common.getHeadersForOrgLevel(),
+      },
+    );
+    console.log('getHeadersFor... with credentials');
+    //let hhh = await common.getHeadersForOrgLevel(); mode: 'no-cors',
+    console.log('headers: ', hhh);
+    const orgLevelBody = await responseOrgLevel.json();
+    console.log({orgLevelBody});
+
+*/
+
     const response = await fetch(
       'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
@@ -261,6 +325,7 @@
     getShellSdk,
     getContext,
     getHeaders,
+    getHeadersForOrgLevel,
     getSearchParams,
     fetchUdfMeta,
     fetchUdfMetaByFieldName,
