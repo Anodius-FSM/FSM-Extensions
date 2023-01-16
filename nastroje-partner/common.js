@@ -244,7 +244,7 @@
     /**
      * 28.12.2022
      */
-
+/*
     const context = await common.getContext();
 
     const responseUnifiedPersonId = await fetch(
@@ -280,7 +280,7 @@
       {
         method: 'GET',
        /* credentials: 'include', */
-        /* referrerPolicy: 'origin-when-cross-origin', */
+        /* referrerPolicy: 'origin-when-cross-origin', 
         headers: await common.getHeadersForOrgLevel(),
       },
     );
@@ -290,11 +290,7 @@
     const orgLevelBody = await responseOrgLevel.json();
     console.log({orgLevelBody});
 
-
-
-
-
-
+*/
 
     const response = await fetch(
       'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({

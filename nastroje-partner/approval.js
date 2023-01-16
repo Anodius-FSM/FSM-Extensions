@@ -74,7 +74,7 @@ const approval = (() => {
   }
 
   /** @returns {Promise<{ currentPage: number, data: Record<string, any>[], lastPage: number, pageSize: number, totalObjectCount: number, truncated: boolean }>} */
-  async function fetchTable(businessPartnerId, monthYear, filters = {}, page = 1, pageSize = 100) {
+  async function fetchTable(businessPartnerId, monthYear, filters = {}, page = 1, pageSize = 999) {
     if (page < 1 || 1000 < pageSize) {
       throw new Error('Page has to be >=1 and pageSize <=1000.');
     }
@@ -362,7 +362,7 @@ const approval = (() => {
       ? state.periods.find(period => period.udoId === state.selectedPeriodUdoId)
       : undefined;
     const table = isSelected
-      ? await fetchTable(state.selectedBusinessPartnerId, period.monthYear, state.filters, state.currentPage, 100)
+      ? await fetchTable(state.selectedBusinessPartnerId, period.monthYear, state.filters, state.currentPage, 999)
       : {
         data: [],
         currentPage: 1,
