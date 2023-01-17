@@ -242,9 +242,9 @@
     }
 
     /**
-     * 28.12.2022
+     * get the unifiedPersonId for the org-level api
      */
-/*
+
     const context = await common.getContext();
 
     const responseUnifiedPersonId = await fetch(
@@ -269,7 +269,21 @@
 
     const respUniPerIdBody =  await responseUnifiedPersonId.json();
     const unifiedPersonId = (respUniPerIdBody.data && respUniPerIdBody.data.length > 0 ) ? respUniPerIdBody.data[0].unifiedPersonId : ''; 
-    const unifiedPersonIdWithDashes = unifiedPersonId.substr(0,8) + '-' + unifiedPersonId.substr(8, 4) + '-' + unifiedPersonId.substr(12,4) + '-' + unifiedPersonId.substr(16,4) + '-' + unifiedPersonId.substr(20,12);  
+    const unifiedPersonIdWithDashes = unifiedPersonId.substr(0,8) + '-' 
+                                    + unifiedPersonId.substr(8, 4) + '-' 
+                                    + unifiedPersonId.substr(12,4) + '-' 
+                                    + unifiedPersonId.substr(16,4) + '-' 
+                                    + unifiedPersonId.substr(20,12);
+    
+    console.log({unifiedPersonId});                                
+    console.log({unifiedPersonIdWithDashes});
+
+
+
+
+
+
+/*
     //https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=B78E5239-34A1-475E-AEF3-99329C68203A&includeSubLevels=false
     // unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`
     let hhh = await common.getHeadersForOrgLevel();
