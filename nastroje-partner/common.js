@@ -57,7 +57,7 @@
     const context = await common.getContext();
     return {
       'Accept': 'application/json',
-      'Authorization': `Bearer ${context.auth.access_token}`,
+      /*'Authorization': `Bearer ${context.auth.access_token}`,*/
       'Content-Type': 'application/json',
       'X-Account-ID': context.accountId,
       'X-Company-ID': context.companyId,
@@ -305,6 +305,8 @@
 
       console.log('url search parameters');
 
+      const credentials = btoa(`${responseCredBody.data[0].ClientId}:${responseCredBody.data[0].ClientSecret}`);
+
     //* calling the cloud-org-level-service api
     const responseOrgLevel = await fetch(
       'https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?' + new URLSearchParams({
@@ -313,7 +315,9 @@
       }),
       {
         method: 'GET',
-        headers: await common.getHeadersForOrgLevel(),
+        headers:{... await common.getHeadersForOrgLevel(),
+          "Authorization": `Basic ${credentials}`
+        }, 
       },
     );
 
