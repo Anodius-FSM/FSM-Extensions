@@ -247,6 +247,31 @@
 
     const context = await common.getContext();
 
+    const responseCredentials = await fetch(
+      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+        ...await common.getSearchParams(),
+        dtos: 'UdoValue.9',
+      }),
+      {
+        method: 'POST',
+        headers: await common.getHeaders(),
+        body: JSON.stringify({
+          query: `
+            SELECT 
+              a.udf.z_f_custom_api_password AS ClientSecret, 
+              a.udf.z_f_custom_api_user AS ClientId 
+            FROM UdoValue a 
+            WHERE 
+              a.udf.z_f_custom_api_nazov = 'Client ID and Client Secret for API calls' 
+            LIMIT 1
+            `,
+        }),
+      }
+    );
+
+    const responseCredBody = await responseCredentials.json();
+    console.log(responseCredBody.data);
+
     const responseUnifiedPersonId = await fetch(
       'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
@@ -279,16 +304,17 @@
     console.log({unifiedPersonIdWithDashes});
 
     //* calling the cloud-org-level-service api
-    const responseOrgLevel = await fetch(
-      `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
-      {
-        method: 'GET', 
-        headers: await common.getHeadersForOrgLevel(),
-      },
-    );
+    // const responseOrgLevel = await fetch(
+    //   `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
+    //   {
+    //     method: 'GET',
+    //     mode: 'cors', 
+    //     headers: await common.getHeadersForOrgLevel(),
+    //   },
+    // );
 
-    const responseFromOrgLevel = await responseOrgLevel.json();
-    console.log(responseFromOrgLevel);
+    // const responseFromOrgLevel = await responseOrgLevel.json();
+    // console.log(responseFromOrgLevel);
 
 
 
