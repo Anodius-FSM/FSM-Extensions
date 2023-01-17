@@ -242,7 +242,7 @@
     }
 
     /**
-     * get the unifiedPersonId for the org-level api
+     * get the unifiedPersonId for the cloud-org-level-service api
      */
 
     const context = await common.getContext();
@@ -278,6 +278,17 @@
     console.log({unifiedPersonId});                                
     console.log({unifiedPersonIdWithDashes});
 
+    //* calling the cloud-org-level-service api
+    const responseOrgLevel = await fetch(
+      `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
+      {
+        method: 'GET', 
+        headers: await common.getHeadersForOrgLevel(),
+      },
+    );
+
+    const responseFromOrgLevel = await responseOrgLevel.json();
+    console.log(responseFromOrgLevel);
 
 
 
