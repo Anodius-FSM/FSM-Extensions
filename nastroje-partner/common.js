@@ -57,7 +57,7 @@
     const context = await common.getContext();
     return {
       'Accept': 'application/json',
-      /*'Authorization': `Bearer ${context.auth.access_token}`,*/
+      'Authorization': `Bearer ${context.auth.access_token}`,
       'Content-Type': 'application/json',
       'X-Account-ID': context.accountId,
       'X-Company-ID': context.companyId,
@@ -247,31 +247,6 @@
 
     const context = await common.getContext();
 
-    const responseCredentials = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
-        ...await common.getSearchParams(),
-        dtos: 'UdoValue.9',
-      }),
-      {
-        method: 'POST',
-        headers: await common.getHeaders(),
-        body: JSON.stringify({
-          query: `
-            SELECT 
-              a.udf.z_f_custom_api_password AS ClientSecret, 
-              a.udf.z_f_custom_api_user AS ClientId 
-            FROM UdoValue a 
-            WHERE 
-              a.udf.z_f_custom_api_nazov = 'Client ID and Client Secret for API calls' 
-            LIMIT 1
-            `,
-        }),
-      }
-    );
-
-    const responseCredBody = await responseCredentials.json();
-    console.log(responseCredBody.data);
-
     const responseUnifiedPersonId = await fetch(
       'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
@@ -302,10 +277,9 @@
     
     console.log({unifiedPersonId});                                
     console.log({unifiedPersonIdWithDashes});
-
-      console.log('url search parameters');
-
-      const credentials = btoa(`${responseCredBody.data[0].ClientId}:${responseCredBody.data[0].ClientSecret}`);
+    console.log("🚀 -------------------------------------------------------------------------------------------------🚀")
+    console.log("🚀 --------------------------- calling the cloud-org-level-service api ---------------------------- 🚀")
+    console.log("🚀 -------------------------------------------------------------------------------------------------🚀")
 
     //* calling the cloud-org-level-service api
     const responseOrgLevel = await fetch(
@@ -315,9 +289,7 @@
       }),
       {
         method: 'GET',
-        headers:{... await common.getHeadersForOrgLevel(),
-          "Authorization": `Basic ${credentials}`
-        }, 
+        headers: await common.getHeadersForOrgLevel(),
       },
     );
 
