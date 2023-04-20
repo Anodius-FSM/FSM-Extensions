@@ -216,7 +216,7 @@
               <div class="hide-partner">
                 <input class="fd-input" type="text" id="disputeCostAdmin" placeholder="Cena" title="Navrhovaná cena" required style="max-width: 5rem">
 
-                <button id="btnAccept" class="fd-button fd-button--positive is-disabled" onclick="!this.classList.contains('is-disabled') && approval.controlBeforeAcceptSelected">
+                <button id="btnAccept" class="fd-button fd-button--positive is-disabled" onclick="!this.classList.contains('is-disabled') && ui.withErrorHandling(approval.controlBeforeAcceptSelected)">
                   <span class="fd-button__text">Potvrdiť zmenu</span>
                 </button>
 
