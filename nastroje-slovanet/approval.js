@@ -727,6 +727,14 @@ const approval = (() => {
     }
 
     await renderTable();
+
+    resetFields();
+  }
+
+  function controlBeforeAcceptSelected() {
+    document
+      .querySelectorAll('#section-approval table tbody.approval tr td:nth-child(1) input[type="checkbox"]:checked')
+      .length > 1 ? ui.showControlDialog() : acceptSelected();
   }
 
   function acceptSelected() {
@@ -816,6 +824,10 @@ const approval = (() => {
     return `${hours.toString().padStart(2, '0')}:${minutes60.toString().padStart(2, '2')}`;
   }
 
+  function resetFields() {
+    document.getElementById('disputeCostAdmin').value = '';
+  }
+
   return {
     selectBusinessPartner,
     searchBusinessPartner,
@@ -829,5 +841,6 @@ const approval = (() => {
     acceptSelected,
     dismissSelected,
     disputeSelected,
+    controlBeforeAcceptSelected
   };
 })();

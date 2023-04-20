@@ -35,6 +35,10 @@
     document.getElementById('result-dialog').style = '';
   }
 
+  function showControlDialog() {
+    document.getElementById('batch-approval-dialog').style = ''; 
+  }
+
   function closeResultDialog() {
     document.getElementById('result-dialog-code').innerText = '';
     document.getElementById('result-dialog-code-pre').style = 'display:none';
@@ -101,5 +105,6 @@
     hideAccessRejectedDialog,
     toggleAttribute,
     toggleAndFocus,
+    showControlDialog
   }
 })();
