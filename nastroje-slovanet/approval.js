@@ -733,10 +733,6 @@ const approval = (() => {
   }
 
   function controlBeforeAcceptSelected() {
-    console.log('controlBeforeAcceptSelected() called');
-    console.log(document
-      .querySelectorAll('#section-approval table tbody.approval tr td:nth-child(1) input[type="checkbox"]:checked')
-      .length);
     document
       .querySelectorAll('#section-approval table tbody.approval tr td:nth-child(1) input[type="checkbox"]:checked')
       .length > 1 ? ui.showControlDialog() : acceptSelected();
@@ -830,7 +826,6 @@ const approval = (() => {
   }
 
   function resetFields() {
-    console.log('resetFields was called');
     document.getElementById('disputeCostAdmin').value = '';
   }
 

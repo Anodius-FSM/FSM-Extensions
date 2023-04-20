@@ -36,8 +36,11 @@
   }
 
   function showControlDialog() {
-    console.log('displaying constrol dialog')
     document.getElementById('batch-approval-dialog').style = ''; 
+  }
+
+  function closeControlDialog() {
+    document.getElementById('batch-approval-dialog').style = 'display:none'; 
   }
 
   function closeResultDialog() {
@@ -106,6 +109,7 @@
     hideAccessRejectedDialog,
     toggleAttribute,
     toggleAndFocus,
-    showControlDialog
+    showControlDialog,
+    closeControlDialog
   }
 })();
