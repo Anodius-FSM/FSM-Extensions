@@ -36,6 +36,7 @@
   }
 
   function showControlDialog() {
+    console.log('displaying constrol dialog')
     document.getElementById('batch-approval-dialog').style = ''; 
   }
 

@@ -639,6 +639,7 @@ const approval = (() => {
    * @param {boolean} updateCost
    */
   async function updateStatusForSelected(status, updateCost) {
+    document.getElementById('batch-approval-dialog').style = 'display:none';
     const disputeCostEl = document.getElementById('disputeCostAdmin');
     const disputeCost = disputeCostEl.value
       ? parseFloat(disputeCostEl.value)
@@ -732,6 +733,10 @@ const approval = (() => {
   }
 
   function controlBeforeAcceptSelected() {
+    console.log('controlBeforeAcceptSelected() called');
+    console.log(document
+      .querySelectorAll('#section-approval table tbody.approval tr td:nth-child(1) input[type="checkbox"]:checked')
+      .length);
     document
       .querySelectorAll('#section-approval table tbody.approval tr td:nth-child(1) input[type="checkbox"]:checked')
       .length > 1 ? ui.showControlDialog() : acceptSelected();
@@ -825,6 +830,7 @@ const approval = (() => {
   }
 
   function resetFields() {
+    console.log('resetFields was called');
     document.getElementById('disputeCostAdmin').value = '';
   }
 
