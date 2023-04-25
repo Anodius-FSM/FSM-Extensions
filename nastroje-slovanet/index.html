@@ -216,7 +216,7 @@
               <div class="hide-partner">
                 <input class="fd-input" type="text" id="disputeCostAdmin" placeholder="Cena" title="Navrhovaná cena" required style="max-width: 5rem">
 
-                <button id="btnAccept" class="fd-button fd-button--positive is-disabled" onclick="!this.classList.contains('is-disabled') && ui.withErrorHandling(approval.acceptSelected)">
+                <button id="btnAccept" class="fd-button fd-button--positive is-disabled" onclick="!this.classList.contains('is-disabled') && ui.withErrorHandling(approval.controlBeforeAcceptSelected)">
                   <span class="fd-button__text">Potvrdiť zmenu</span>
                 </button>
 
@@ -708,6 +708,45 @@
             </div>
           </div>
         </section>
+        
+        <section 
+          id="batch-approval-dialog" 
+          class="fd-dialog-docs-static fd-dialog fd-dialog--active"
+          style="display:none"
+        >
+          <div class="fd-dialog__content fd-dialog__content--s">
+            <header class="fd-dialog__header fd-bar fd-bar--header">
+              <div class="fd-bar__left">
+                <div class="fd-bar__element">
+                  <h2>Pozor</h2>
+                </div>
+              </div>
+            </header>
+            <div class="fd-dialog__body">
+              <p>Chystáte vykonať zmeny na viac ako 1 objekte, chcete pokračovať?</p>
+            </div>
+            <footer class="fd-dialog__footer fd-bar fd-bar--footer">
+              <div class="fd-bar__right">
+                <div class="fd-bar__element">
+                  <button
+                    class="fd-dialog__decisive-button fd-button fd-button--emphasized fd-button--compact"
+                    onclick="ui.withErrorHandling(approval.acceptSelected)"
+                  >
+                    Pokračovať
+                  </button>
+                  &nbsp;
+                  <button
+                    class="fd-dialog__decisive-button fd-button fd-button--emphasized fd-button--compact"
+                    onclick="ui.closeControlDialog()"
+                  >
+                    Zrušiť
+                  </button>
+                </div>
+              </div>
+            </footer>
+          </div>
+        </section>
+
 
       </div>
     </div>

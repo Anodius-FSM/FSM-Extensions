@@ -325,6 +325,8 @@ const approval = (() => {
 	// 16. 11. 2022, T. Fordos
 	// Suma na schvalenie: sum(table.data[n].totalCost)  
 	let allCostToApproval = 0;
+
+  resetFields();
 	
     const approvalStatus = state.selectedPeriodUdoId
       ? state.periods.find(period => period.udoId === state.selectedPeriodUdoId)
@@ -639,6 +641,7 @@ const approval = (() => {
    * @param {boolean} updateCost
    */
   async function updateStatusForSelected(status, updateCost) {
+    document.getElementById('batch-approval-dialog').style = 'display:none';
     const disputeCostEl = document.getElementById('disputeCostAdmin');
     const disputeCost = disputeCostEl.value
       ? parseFloat(disputeCostEl.value)
@@ -727,6 +730,14 @@ const approval = (() => {
     }
 
     await renderTable();
+
+    resetFields();
+  }
+
+  function controlBeforeAcceptSelected() {
+    document
+      .querySelectorAll('#section-approval table tbody.approval tr td:nth-child(1) input[type="checkbox"]:checked')
+      .length > 1 ? ui.showControlDialog() : acceptSelected();
   }
 
   function acceptSelected() {
@@ -816,6 +827,10 @@ const approval = (() => {
     return `${hours.toString().padStart(2, '0')}:${minutes60.toString().padStart(2, '2')}`;
   }
 
+  function resetFields() {
+    document.getElementById('disputeCostAdmin').value = '';
+  }
+
   return {
     selectBusinessPartner,
     searchBusinessPartner,
@@ -829,5 +844,6 @@ const approval = (() => {
     acceptSelected,
     dismissSelected,
     disputeSelected,
+    controlBeforeAcceptSelected
   };
 })();

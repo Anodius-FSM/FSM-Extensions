@@ -56,9 +56,9 @@
   async function getHeadersForOrgLevel() {
     const context = await common.getContext();
     return {
-      /*'Accept': 'application/json',*/
+      'Accept': 'application/json',
       'Authorization': `Bearer ${context.auth.access_token}`,
-     /* 'Content-Type': 'application/json',*/
+      'Content-Type': 'application/json',
       'X-Account-ID': context.accountId,
       'X-Company-ID': context.companyId,
       'X-Client-ID': CLIENT_ID,
@@ -242,9 +242,9 @@
     }
 
     /**
-     * 28.12.2022
+     * get the unifiedPersonId for the cloud-org-level-service api
      */
-/*
+
     const context = await common.getContext();
 
     const responseUnifiedPersonId = await fetch(
@@ -267,9 +267,40 @@
       },
     );
 
-    const respUniPerIdBody =  await responseUnifiedPersonId.json();
-    const unifiedPersonId = (respUniPerIdBody.data && respUniPerIdBody.data.length > 0 ) ? respUniPerIdBody.data[0].unifiedPersonId : ''; 
-    const unifiedPersonIdWithDashes = unifiedPersonId.substr(0,8) + '-' + unifiedPersonId.substr(8, 4) + '-' + unifiedPersonId.substr(12,4) + '-' + unifiedPersonId.substr(16,4) + '-' + unifiedPersonId.substr(20,12);  
+    // const respUniPerIdBody =  await responseUnifiedPersonId.json();
+    // const unifiedPersonId = (respUniPerIdBody.data && respUniPerIdBody.data.length > 0 ) ? respUniPerIdBody.data[0].unifiedPersonId : ''; 
+    // const unifiedPersonIdWithDashes = unifiedPersonId.substr(0,8) + '-' 
+    //                                 + unifiedPersonId.substr(8, 4) + '-' 
+    //                                 + unifiedPersonId.substr(12,4) + '-' 
+    //                                 + unifiedPersonId.substr(16,4) + '-' 
+    //                                 + unifiedPersonId.substr(20,12);
+    
+    // console.log({unifiedPersonId});                                
+    // console.log({unifiedPersonIdWithDashes});
+    // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")
+    // console.log("🚀 --------------------------- calling the cloud-org-level-service api ---------------------------- 🚀")
+    // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")
+
+    // //* calling the cloud-org-level-service api
+    // const responseOrgLevel = await fetch(
+    //   'https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?' + new URLSearchParams({
+    //     unifiedPersonId: unifiedPersonIdWithDashes,
+    //     includeSubLevels: false,
+    //   }),
+    //   {
+    //     method: 'GET',
+    //     headers: await common.getHeadersForOrgLevel(),
+    //   },
+    // );
+
+    // const responseFromOrgLevel = await responseOrgLevel.json();
+    // console.log(responseFromOrgLevel);
+
+
+
+// `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
+
+/*
     //https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=B78E5239-34A1-475E-AEF3-99329C68203A&includeSubLevels=false
     // unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`
     let hhh = await common.getHeadersForOrgLevel();
