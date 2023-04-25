@@ -325,6 +325,8 @@ const approval = (() => {
 	// 16. 11. 2022, T. Fordos
 	// Suma na schvalenie: sum(table.data[n].totalCost)  
 	let allCostToApproval = 0;
+
+  resetFields();
 	
     const approvalStatus = state.selectedPeriodUdoId
       ? state.periods.find(period => period.udoId === state.selectedPeriodUdoId)
