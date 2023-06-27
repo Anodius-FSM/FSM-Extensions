@@ -204,7 +204,7 @@ const approval = (() => {
             WHERE p.businessPartner = '${businessPartnerId}'
             AND (effort.startDateTime > '${since}' AND effort.startDateTime < '${until}')
             AND (mileage IS NOT NULL AND effort IS NOT NULL)
-            AND (sc.udf.z_f_sc_request_status = '${APPROVAL_STATUS.ChangeRequired}' OR sc.udf.z_f_sc_request_status = '${APPROVAL_STATUS.Empty}')
+            AND (sc.udf.z_f_sc_request_status = '${APPROVAL_STATUS.ChangeRequired}' OR sc.udf.z_f_sc_request_status IS NULL )
           `,
         }),
       },
