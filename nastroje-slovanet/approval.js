@@ -338,11 +338,13 @@ const approval = (() => {
       document.getElementById('btnDispute').classList.add('is-disabled');
       document.getElementById('btnAccept').classList.add('is-disabled');
       document.getElementById('btnDismiss').classList.add('is-disabled');
+      document.getElementById('btnApproveAct').classList.add('is-disabled');
     } else if (approvalStatus) {
       document.getElementById('btnApprove').classList.remove('is-disabled');
       document.getElementById('btnDispute').classList.remove('is-disabled');
       document.getElementById('btnAccept').classList.remove('is-disabled');
       document.getElementById('btnDismiss').classList.remove('is-disabled');
+      document.getElementById('btnApproveAct').classList.remove('is-disabled');
     }
 
     document.getElementById('approvalApproved').innerText =
@@ -358,6 +360,7 @@ const approval = (() => {
       document.getElementById('btnDispute').classList.add('is-disabled');
       document.getElementById('btnAccept').classList.add('is-disabled');
       document.getElementById('btnDismiss').classList.add('is-disabled');
+      document.getElementById('btnApproveAct').classList.add('is-disabled');
       state.currentPage = 1;
     }
 
