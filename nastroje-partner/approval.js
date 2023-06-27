@@ -5,6 +5,7 @@ const approval = (() => {
     Dismissed: 'Zmena zamietnutá',
     ChangeRequired: 'Požadovaná zmena',
     Approved: 'Schválené',
+    Empty: ''
   };
   const state = {
     currentPage: 1,
@@ -203,7 +204,7 @@ const approval = (() => {
             WHERE p.businessPartner = '${businessPartnerId}'
             AND (effort.startDateTime > '${since}' AND effort.startDateTime < '${until}')
             AND (mileage IS NOT NULL AND effort IS NOT NULL)
-            AND sc.udf.z_f_sc_request_status = '${APPROVAL_STATUS.ChangeRequired}'
+            AND (sc.udf.z_f_sc_request_status = '${APPROVAL_STATUS.ChangeRequired}' OR sc.udf.z_f_sc_request_status = '${APPROVAL_STATUS.Empty}')
           `,
         }),
       },
@@ -620,7 +621,7 @@ const approval = (() => {
     const period = state.periods.find(period => period.udoId === state.selectedPeriodUdoId);
     const disputedCount = await countDisputed(state.selectedBusinessPartnerId, period.monthYear);
     if (disputedCount) {
-      return void ui.showResultDialog('Chyba', 'Report nie je možné schváliť, pretože obsahuje záznamy s vyžiadanou zmenou.')
+      return void ui.showResultDialog('Chyba', 'Report nie je možné schváliť, pretože obsahuje záznamy s vyžiadanou zmenou alebo s prázdnym stavom.')
     }
 
 

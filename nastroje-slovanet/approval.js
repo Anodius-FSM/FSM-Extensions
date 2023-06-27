@@ -5,6 +5,7 @@ const approval = (() => {
     Dismissed: 'Zmena zamietnutá',
     ChangeRequired: 'Požadovaná zmena',
     Approved: 'Schválené',
+    Empty: ''
   };
   const state = {
     currentPage: 1,
@@ -203,7 +204,7 @@ const approval = (() => {
             WHERE p.businessPartner = '${businessPartnerId}'
             AND (effort.startDateTime > '${since}' AND effort.startDateTime < '${until}')
             AND (mileage IS NOT NULL AND effort IS NOT NULL)
-            AND sc.udf.z_f_sc_request_status = '${APPROVAL_STATUS.ChangeRequired}'
+            AND (sc.udf.z_f_sc_request_status = '${APPROVAL_STATUS.ChangeRequired}' OR sc.udf.z_f_sc_request_status = '${APPROVAL_STATUS.Empty}')
           `,
         }),
       },
@@ -748,6 +749,10 @@ const approval = (() => {
     return updateStatusForSelected(APPROVAL_STATUS.Dismissed, false);
   }
 
+  function approveSelectedAct() {
+    return updateStatusForSelected(APPROVAL_STATUS.Approved, false);
+  }
+
   async function disputeSelected() {
     const disputeCostEl = document.getElementById('disputeCostPartner');
     const disputeCommentEl = document.getElementById('disputeComment');
@@ -844,6 +849,7 @@ const approval = (() => {
     acceptSelected,
     dismissSelected,
     disputeSelected,
-    controlBeforeAcceptSelected
+    controlBeforeAcceptSelected,
+    approveSelectedAct,
   };
 })();
