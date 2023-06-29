@@ -621,7 +621,7 @@ const approval = (() => {
     const period = state.periods.find(period => period.udoId === state.selectedPeriodUdoId);
     const disputedCount = await countDisputed(state.selectedBusinessPartnerId, period.monthYear);
     if (disputedCount) {
-      return void ui.showResultDialog('Chyba', 'Report nie je možné schváliť, pretože obsahuje záznamy s vyžiadanou zmenou alebo s prázdnym stavom.')
+      return void ui.showResultDialog('Chyba', 'Report nie je možné schváliť, pretože obsahuje záznamy s vyžiadanou zmenou alebo s prázdnym stavom. Prípadne kontaktujte Slovanet s požiadavkou o nápravu.')
     }
 
 
