@@ -9,7 +9,8 @@
 		"SHELL_HOME_SCREEN"
 	],
   "extensionAttributes": [
-    "allow-downloads"
+    "allow-downloads",
+    "allow-same-origin"
   ],
   "shellNavigation": {
     "icon": "activities",
