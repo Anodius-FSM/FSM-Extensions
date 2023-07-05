@@ -102,6 +102,8 @@
         }),
       },
     );
+
+    console.log(response);
   
     if (!response.ok) {
       throw new Error(`Failed to fetch UdfMeta, got status ${response.status}`);
@@ -277,11 +279,11 @@
     
     // console.log({unifiedPersonId});                                
     // console.log({unifiedPersonIdWithDashes});
-    // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")
-    // console.log("🚀 --------------------------- calling the cloud-org-level-service api ---------------------------- 🚀")
-    // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")
+    // // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")
+    //  console.log("🚀 --------------------------- calling the cloud-org-level-service api ---------------------------- 🚀")
+    // // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")
 
-    // //* calling the cloud-org-level-service api
+    // // //* calling the cloud-org-level-service api
     // const responseOrgLevel = await fetch(
     //   'https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?' + new URLSearchParams({
     //     unifiedPersonId: unifiedPersonIdWithDashes,
