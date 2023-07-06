@@ -6,7 +6,7 @@
   let _shellSdk = null;
   function setShellSdk(shellSdk) {
     _shellSdk = shellSdk;
-    _shellSdk.setAllowedOrigins(['https://github.com/', 'https://tomi639.github.io/FSM-Extensions']);
+    _shellSdk.setAllowedOrigins(['https://github.com/', 'https://tomi639.github.io']);
   }
 
   function getShellSdk() {
