@@ -248,6 +248,9 @@
      * get the unifiedPersonId for the cloud-org-level-service api
      */
 
+    let isAllowed = _shellSdk.isOriginAllowed('https://tomi639.github.io');
+    console.warn({isAllowed});
+
     const context = await common.getContext();
 
     const responseUnifiedPersonId = await fetch(
@@ -280,7 +283,9 @@
     
     console.log({unifiedPersonId});                                
     console.log({unifiedPersonIdWithDashes});
-    // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")
+
+    
+    // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")  _shellSdk.setAllowedOrigins(['https://github.com/', 'https://tomi639.github.io']);
      console.log("🚀 --------------------------- calling the cloud-org-level-service api ---------------------------- 🚀")
     // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")
 
