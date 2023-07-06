@@ -6,6 +6,7 @@
   let _shellSdk = null;
   function setShellSdk(shellSdk) {
     _shellSdk = shellSdk;
+    _shellSdk.setAllowedOrigins(['https://github.com/', 'https://tomi639.github.io/FSM-Extensions']);
   }
 
   function getShellSdk() {
@@ -269,34 +270,34 @@
       },
     );
 
-    // const respUniPerIdBody =  await responseUnifiedPersonId.json();
-    // const unifiedPersonId = (respUniPerIdBody.data && respUniPerIdBody.data.length > 0 ) ? respUniPerIdBody.data[0].unifiedPersonId : ''; 
-    // const unifiedPersonIdWithDashes = unifiedPersonId.substr(0,8) + '-' 
-    //                                 + unifiedPersonId.substr(8, 4) + '-' 
-    //                                 + unifiedPersonId.substr(12,4) + '-' 
-    //                                 + unifiedPersonId.substr(16,4) + '-' 
-    //                                 + unifiedPersonId.substr(20,12);
+    const respUniPerIdBody =  await responseUnifiedPersonId.json();
+    const unifiedPersonId = (respUniPerIdBody.data && respUniPerIdBody.data.length > 0 ) ? respUniPerIdBody.data[0].unifiedPersonId : ''; 
+    const unifiedPersonIdWithDashes = unifiedPersonId.substr(0,8) + '-' 
+                                    + unifiedPersonId.substr(8, 4) + '-' 
+                                    + unifiedPersonId.substr(12,4) + '-' 
+                                    + unifiedPersonId.substr(16,4) + '-' 
+                                    + unifiedPersonId.substr(20,12);
     
-    // console.log({unifiedPersonId});                                
-    // console.log({unifiedPersonIdWithDashes});
-    // // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")
-    //  console.log("🚀 --------------------------- calling the cloud-org-level-service api ---------------------------- 🚀")
-    // // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")
+    console.log({unifiedPersonId});                                
+    console.log({unifiedPersonIdWithDashes});
+    // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")
+     console.log("🚀 --------------------------- calling the cloud-org-level-service api ---------------------------- 🚀")
+    // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")
 
-    // // //* calling the cloud-org-level-service api
-    // const responseOrgLevel = await fetch(
-    //   'https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?' + new URLSearchParams({
-    //     unifiedPersonId: unifiedPersonIdWithDashes,
-    //     includeSubLevels: false,
-    //   }),
-    //   {
-    //     method: 'GET',
-    //     headers: await common.getHeadersForOrgLevel(),
-    //   },
-    // );
+    // //* calling the cloud-org-level-service api
+    const responseOrgLevel = await fetch(
+      'https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?' + new URLSearchParams({
+        unifiedPersonId: unifiedPersonIdWithDashes,
+        includeSubLevels: false,
+      }),
+      {
+        method: 'GET',
+        headers: await common.getHeadersForOrgLevel(),
+      },
+    );
 
-    // const responseFromOrgLevel = await responseOrgLevel.json();
-    // console.log(responseFromOrgLevel);
+    const responseFromOrgLevel = await responseOrgLevel.json();
+    console.log(responseFromOrgLevel);
 
 
 
