@@ -6,7 +6,7 @@
   let _shellSdk = null;
   function setShellSdk(shellSdk) {
     _shellSdk = shellSdk;
-    _shellSdk.setAllowedOrigins(['https://github.com/', 'https://tomi639.github.io']);
+   // _shellSdk.setAllowedOrigins(['https://github.com/', 'https://tomi639.github.io']);
   }
 
   function getShellSdk() {
@@ -248,61 +248,61 @@
      * get the unifiedPersonId for the cloud-org-level-service api
      */
 
-    let isAllowed = _shellSdk.isOriginAllowed('https://tomi639.github.io');
-    console.warn({isAllowed});
+    // let isAllowed = _shellSdk.isOriginAllowed('https://tomi639.github.io');
+    // console.warn({isAllowed});
 
-    const context = await common.getContext();
+    // const context = await common.getContext();
 
-    const responseUnifiedPersonId = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
-        ...await common.getSearchParams(),
-        dtos: 'UnifiedPerson.12',
-      }),
-      {
-        method: 'POST',
-        headers: await common.getHeaders(),
-        body: JSON.stringify({
-          query: `
-            SELECT 
-              up.id as unifiedPersonId 
-            FROM UnifiedPerson up 
-            WHERE up.userName = '${context.user}'
-            LIMIT 1
-          `,
-        }),
-      },
-    );
+    // const responseUnifiedPersonId = await fetch(
+    //   'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+    //     ...await common.getSearchParams(),
+    //     dtos: 'UnifiedPerson.12',
+    //   }),
+    //   {
+    //     method: 'POST',
+    //     headers: await common.getHeaders(),
+    //     body: JSON.stringify({
+    //       query: `
+    //         SELECT 
+    //           up.id as unifiedPersonId 
+    //         FROM UnifiedPerson up 
+    //         WHERE up.userName = '${context.user}'
+    //         LIMIT 1
+    //       `,
+    //     }),
+    //   },
+    // );
 
-    const respUniPerIdBody =  await responseUnifiedPersonId.json();
-    const unifiedPersonId = (respUniPerIdBody.data && respUniPerIdBody.data.length > 0 ) ? respUniPerIdBody.data[0].unifiedPersonId : ''; 
-    const unifiedPersonIdWithDashes = unifiedPersonId.substr(0,8) + '-' 
-                                    + unifiedPersonId.substr(8, 4) + '-' 
-                                    + unifiedPersonId.substr(12,4) + '-' 
-                                    + unifiedPersonId.substr(16,4) + '-' 
-                                    + unifiedPersonId.substr(20,12);
+    // const respUniPerIdBody =  await responseUnifiedPersonId.json();
+    // const unifiedPersonId = (respUniPerIdBody.data && respUniPerIdBody.data.length > 0 ) ? respUniPerIdBody.data[0].unifiedPersonId : ''; 
+    // const unifiedPersonIdWithDashes = unifiedPersonId.substr(0,8) + '-' 
+    //                                 + unifiedPersonId.substr(8, 4) + '-' 
+    //                                 + unifiedPersonId.substr(12,4) + '-' 
+    //                                 + unifiedPersonId.substr(16,4) + '-' 
+    //                                 + unifiedPersonId.substr(20,12);
     
-    console.log({unifiedPersonId});                                
-    console.log({unifiedPersonIdWithDashes});
+    // console.log({unifiedPersonId});                                
+    // console.log({unifiedPersonIdWithDashes});
 
     
-    // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")  _shellSdk.setAllowedOrigins(['https://github.com/', 'https://tomi639.github.io']);
-     console.log("🚀 --------------------------- calling the cloud-org-level-service api ---------------------------- 🚀")
-    // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")
+    // // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")  _shellSdk.setAllowedOrigins(['https://github.com/', 'https://tomi639.github.io']);
+    //  console.log("🚀 --------------------------- calling the cloud-org-level-service api ---------------------------- 🚀")
+    // // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")
 
-    // //* calling the cloud-org-level-service api
-    const responseOrgLevel = await fetch(
-      'https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?' + new URLSearchParams({
-        unifiedPersonId: unifiedPersonIdWithDashes,
-        includeSubLevels: false,
-      }),
-      {
-        method: 'GET',
-        headers: await common.getHeadersForOrgLevel(),
-      },
-    );
+    // // //* calling the cloud-org-level-service api
+    // const responseOrgLevel = await fetch(
+    //   'https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?' + new URLSearchParams({
+    //     unifiedPersonId: unifiedPersonIdWithDashes,
+    //     includeSubLevels: false,
+    //   }),
+    //   {
+    //     method: 'GET',
+    //     headers: await common.getHeadersForOrgLevel(),
+    //   },
+    // );
 
-    const responseFromOrgLevel = await responseOrgLevel.json();
-    console.log(responseFromOrgLevel);
+    // const responseFromOrgLevel = await responseOrgLevel.json();
+    // console.log(responseFromOrgLevel);
 
 
 
