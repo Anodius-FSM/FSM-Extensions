@@ -6,6 +6,7 @@
   let _shellSdk = null;
   function setShellSdk(shellSdk) {
     _shellSdk = shellSdk;
+   // _shellSdk.setAllowedOrigins(['https://github.com/', 'https://tomi639.github.io']);
   }
 
   function getShellSdk() {
@@ -247,27 +248,30 @@
      * get the unifiedPersonId for the cloud-org-level-service api
      */
 
-    const context = await common.getContext();
+    // let isAllowed = _shellSdk.isOriginAllowed('https://tomi639.github.io');
+    // console.warn({isAllowed});
 
-    const responseUnifiedPersonId = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
-        ...await common.getSearchParams(),
-        dtos: 'UnifiedPerson.12',
-      }),
-      {
-        method: 'POST',
-        headers: await common.getHeaders(),
-        body: JSON.stringify({
-          query: `
-            SELECT 
-              up.id as unifiedPersonId 
-            FROM UnifiedPerson up 
-            WHERE up.userName = '${context.user}'
-            LIMIT 1
-          `,
-        }),
-      },
-    );
+    // const context = await common.getContext();
+
+    // const responseUnifiedPersonId = await fetch(
+    //   'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+    //     ...await common.getSearchParams(),
+    //     dtos: 'UnifiedPerson.12',
+    //   }),
+    //   {
+    //     method: 'POST',
+    //     headers: await common.getHeaders(),
+    //     body: JSON.stringify({
+    //       query: `
+    //         SELECT 
+    //           up.id as unifiedPersonId 
+    //         FROM UnifiedPerson up 
+    //         WHERE up.userName = '${context.user}'
+    //         LIMIT 1
+    //       `,
+    //     }),
+    //   },
+    // );
 
     // const respUniPerIdBody =  await responseUnifiedPersonId.json();
     // const unifiedPersonId = (respUniPerIdBody.data && respUniPerIdBody.data.length > 0 ) ? respUniPerIdBody.data[0].unifiedPersonId : ''; 
@@ -279,7 +283,9 @@
     
     // console.log({unifiedPersonId});                                
     // console.log({unifiedPersonIdWithDashes});
-    // // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")
+
+    
+    // // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")  _shellSdk.setAllowedOrigins(['https://github.com/', 'https://tomi639.github.io']);
     //  console.log("🚀 --------------------------- calling the cloud-org-level-service api ---------------------------- 🚀")
     // // console.log("🚀 -------------------------------------------------------------------------------------------------🚀")
 
