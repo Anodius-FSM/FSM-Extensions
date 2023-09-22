@@ -130,9 +130,9 @@ const approval = (() => {
             JOIN BusinessPartner bp 
               ON sc.businessPartner = bp.id
             LEFT JOIN Mileage m 
-              ON a.id = m.object.objectId
+              ON a.id = m.object.objectId AND  m.inactive = FALSE
             LEFT JOIN TimeEffort te 
-              ON a.id = te.object.objectId
+              ON a.id = te.object.objectId AND te.inactive = FALSE
             JOIN Approval ap 
               ON te.id = ap.object.objectId
             JOIN UnifiedPerson p 
