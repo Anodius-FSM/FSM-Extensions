@@ -1,7 +1,7 @@
  {
-  "name": "Nástroje Partner",
+  "name": "Nástroje Partner - TEST",
   "provider": "Anodius, a.s.",
-  "description": "Nástroje Partner",
+  "description": "Nástroje Partner - TEST",
   "version": "1.0.0",
   "icon": "https://raw.githubusercontent.com/Anodius-FSM/FSM-Extensions/main/nastroje-partner/icon.svg",
   "useShellSDK": true,

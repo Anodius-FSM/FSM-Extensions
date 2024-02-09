@@ -498,11 +498,17 @@ const approval = (() => {
   async function onNavigate() {
     const context = await common.getContext();
     state.person = await common.fetchPerson(context.erpUserId);
+    console.log('nastroje partner: - approval.js -------------------------------');
+    console.log('-------------------------------------------------');
+    console.log(context.erpUserId);
+    console.log(state);
 
     state.businessPartners = await common.fetchBusinessPartners(
       'CROWD_PARTNER',
       state.person.crowdType === 'null' ? undefined : state.person.id
     );
+    console.log(state.businessPartners)  
+    console.log('nastroje partner: - approval.js -------------------------------'); 
 
     if (state.person.crowdType === "null") {
       document.querySelectorAll('.hide-admin').forEach(e => e.style.display = "none");
