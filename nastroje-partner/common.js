@@ -46,6 +46,7 @@
 
   async function getHeaders() {
     const context = await common.getContext();
+    console.log(context.auth.access_token);
     return {
       'Accept': 'application/json',
       'Authorization': `Bearer ${context.auth.access_token}`,
@@ -203,9 +204,10 @@
     if (cached) {
       return cached;
     }
-
+/**'https://eu.coresuite.com/api/query/v1?'*/
+/** https://eu.fsm.cloud.sap/api/query/v1?account=slovanet_P1&company=Slovanet_prod&dtos=Person.25 */
     const response = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'Person.25',
       }),
