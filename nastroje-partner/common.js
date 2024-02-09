@@ -207,7 +207,7 @@
     const response = await fetch(
       'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
-        dtos: 'Person.24',
+        dtos: 'Person.25',
       }),
       {
         method: 'POST',
