@@ -38,7 +38,6 @@
         console.debug('Received context');
         _context = JSON.parse(event);
         _context_valid_until = Date.now() + _context.auth.expires_in * 1000 - 3000;
-        console.log(_context);
         rs(_context);
       });
     });
@@ -46,7 +45,6 @@
 
   async function getHeaders() {
     const context = await common.getContext();
-    console.log(context.auth.access_token);
     return {
       'Accept': 'application/json',
       'Authorization': `Bearer ${context.auth.access_token}`,
