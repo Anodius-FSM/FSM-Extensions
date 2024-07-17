@@ -202,11 +202,12 @@
     if (cached) {
       return cached;
     }
-
+/**'https://eu.coresuite.com/api/query/v1?'*/
+/** https://eu.fsm.cloud.sap/api/query/v1?account=slovanet_P1&company=Slovanet_prod&dtos=Person.25 */
     const response = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
-        dtos: 'Person.24',
+        dtos: 'Person.25',
       }),
       {
         method: 'POST',

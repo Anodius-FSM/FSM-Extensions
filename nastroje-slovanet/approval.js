@@ -80,9 +80,9 @@ const approval = (() => {
       throw new Error('Page has to be >=1 and pageSize <=1000.');
     }
 
-    const since = moment(monthYear, 'MM/YYYY').startOf('month').toISOString().replace(/\.000Z$/, 'Z');
-    const until = moment(monthYear, 'MM/YYYY').add(1, 'month').startOf('month').toISOString().replace(/\.000Z$/, 'Z');
-
+    const since = moment(monthYear, 'MM/YYYY').startOf('month').toISOString().replace(/\.000Z$/, 'Z').split('T')[0];
+    const until = moment(monthYear, 'MM/YYYY').add(1, 'month').startOf('month').toISOString().replace(/\.000Z$/, 'Z').split('T')[0];
+    
     const filtersQuery = Object.entries(filters)
       .map(([colName, value]) => {
         const map = filtersMapping[colName];
@@ -142,8 +142,9 @@ const approval = (() => {
             AND priceList.udf.z_f_co_km IS NOT NULL
             WHERE 
               (p.businessPartner = '${businessPartnerId}'
-              AND (te.startDateTime >= '${since}' AND te.startDateTime < '${until}')
+              AND (te.udf.z_f_te_approvedate >= '${since}' AND te.udf.z_f_te_approvedate <= '${until}')
               AND ap.decisionStatus = 'APPROVED'
+              AND sc.udf.z_f_sc_fixstav IN ('OK', 'OK_SYSTEM')
               AND (m IS NOT NULL AND te IS NOT NULL)) 
 			  ${filtersQuery ? "AND  " + filtersQuery : ""}
             ORDER BY te.startDateTime DESC
@@ -157,7 +158,7 @@ const approval = (() => {
     }
 
     const body = await response.json();
-
+    
     body.data.forEach(e => {
       e.date = moment(e.date).format('D.M.YYYY');
       e.effortDuration = minutesToHHMM(e.effortDuration);
