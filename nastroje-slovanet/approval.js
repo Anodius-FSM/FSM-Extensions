@@ -81,9 +81,7 @@ const approval = (() => {
     }
 
     const since = moment(monthYear, 'MM/YYYY').startOf('month').toISOString().replace(/\.000Z$/, 'Z').split('T')[0];
-    console.log("🚀 ~ fetchTable ~ since:", since)
     const until = moment(monthYear, 'MM/YYYY').add(1, 'month').startOf('month').toISOString().replace(/\.000Z$/, 'Z').split('T')[0];
-    console.log("🚀 ~ fetchTable ~ until:", until)
     
     const filtersQuery = Object.entries(filters)
       .map(([colName, value]) => {
@@ -160,8 +158,7 @@ const approval = (() => {
     }
 
     const body = await response.json();
-    console.log("🚀 ~ fetchTable ~ body:", body)
-
+    
     body.data.forEach(e => {
       e.date = moment(e.date).format('D.M.YYYY');
       e.effortDuration = minutesToHHMM(e.effortDuration);
