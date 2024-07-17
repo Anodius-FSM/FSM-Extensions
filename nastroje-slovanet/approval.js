@@ -142,8 +142,9 @@ const approval = (() => {
             AND priceList.udf.z_f_co_km IS NOT NULL
             WHERE 
               (p.businessPartner = '${businessPartnerId}'
-              AND (te.startDateTime >= '${since}' AND te.startDateTime < '${until}')
+              AND (te.udf.z_f_te_approvedate >= '${since}' AND te.udf.z_f_te_approvedate <= '${until}')
               AND ap.decisionStatus = 'APPROVED'
+              AND sc.udf.z_f_sc_fixstav IN ('OK', 'OK_SYSTEM')
               AND (m IS NOT NULL AND te IS NOT NULL)) 
 			  ${filtersQuery ? "AND  " + filtersQuery : ""}
             ORDER BY te.startDateTime DESC
