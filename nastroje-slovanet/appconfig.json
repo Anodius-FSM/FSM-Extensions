@@ -1,7 +1,7 @@
  {
-  "name": "Nástroje Slovanet, a. s. - TEST",
+  "name": "Nástroje Slovanet, a. s.",
   "provider": "Anodius, a.s.",
-  "description": "Nástroje Slovanet, a. s. - TEST",
+  "description": "Nástroje Slovanet, a. s.",
   "version": "1.0.0",
   "icon": "https://raw.githubusercontent.com/Anodius-FSM/FSM-Extensions/main/nastroje-slovanet/icon.svg",
   "useShellSDK": true,
