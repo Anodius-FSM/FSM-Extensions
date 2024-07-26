@@ -82,7 +82,7 @@ const approval = (() => {
 
     const since = moment(monthYear, 'MM/YYYY').startOf('month').toISOString().replace(/\.000Z$/, 'Z').split('T')[0];
     const until = moment(monthYear, 'MM/YYYY').add(1, 'month').startOf('month').toISOString().replace(/\.000Z$/, 'Z').split('T')[0];
-    
+
     const filtersQuery = Object.entries(filters)
       .map(([colName, value]) => {
         const map = filtersMapping[colName];
@@ -142,7 +142,7 @@ const approval = (() => {
             AND priceList.udf.z_f_co_km IS NOT NULL
             WHERE 
               (p.businessPartner = '${businessPartnerId}'
-              AND (te.udf.z_f_te_approvedate >= '${since}' AND te.udf.z_f_te_approvedate <= '${until}')
+              AND (te.udf.z_f_te_approvedate > '${since}' AND te.udf.z_f_te_approvedate <= '${until}')
               AND ap.decisionStatus = 'APPROVED'
               AND sc.udf.z_f_sc_fixstav IN ('OK', 'OK_SYSTEM')
               AND (m IS NOT NULL AND te IS NOT NULL)) 
