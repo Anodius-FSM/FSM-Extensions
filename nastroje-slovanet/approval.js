@@ -24,6 +24,14 @@ const approval = (() => {
     selectedPeriodUdoId: null,
   };
 
+  function getSinceDate(monthYear) {
+    return moment(monthYear, 'MM/YYYY').startOf('month').toISOString().replace(/\.000Z$/, 'Z').split('T')[0];
+  }
+
+  function getUntilDate(monthYear) {
+    return moment(monthYear, 'MM/YYYY').add(1, 'month').startOf('month').toISOString().replace(/\.000Z$/, 'Z').split('T')[0];
+  }
+
   const filtersMapping = {
     'activityCode': (val) => val && `LOWER(a.code) LIKE '%${val.toLowerCase()}%'`,
     'serviceCallTypeName': (val) => val && `LOWER(sc.typeName) LIKE '%${val.toLowerCase()}%'`,
@@ -80,8 +88,8 @@ const approval = (() => {
       throw new Error('Page has to be >=1 and pageSize <=1000.');
     }
 
-    const since = moment(monthYear, 'MM/YYYY').startOf('month').toISOString().replace(/\.000Z$/, 'Z').split('T')[0];
-    const until = moment(monthYear, 'MM/YYYY').add(1, 'month').startOf('month').toISOString().replace(/\.000Z$/, 'Z').split('T')[0];
+    const since = getSinceDate( monthYear); //moment(monthYear, 'MM/YYYY').startOf('month').toISOString().replace(/\.000Z$/, 'Z').split('T')[0];
+    const until = getUntilDate(monthYear); //moment(monthYear, 'MM/YYYY').add(1, 'month').startOf('month').toISOString().replace(/\.000Z$/, 'Z').split('T')[0];
 
     const filtersQuery = Object.entries(filters)
       .map(([colName, value]) => {
@@ -169,8 +177,8 @@ const approval = (() => {
 
   /** @returns {Promise<number>} */
   async function countDisputed(businessPartnerId, monthYear) {
-    const since = moment(monthYear, 'MM/YYYY').startOf('month').toISOString().replace(/\.000Z$/, 'Z');
-    const until = moment(monthYear, 'MM/YYYY').add(1, 'month').startOf('month').toISOString().replace(/\.000Z$/, 'Z');
+    const since = getSinceDate(monthYear); //moment(monthYear, 'MM/YYYY').startOf('month').toISOString().replace(/\.000Z$/, 'Z');
+    const until = getUntilDate(monthYear); //moment(monthYear, 'MM/YYYY').add(1, 'month').startOf('month').toISOString().replace(/\.000Z$/, 'Z');
 
     const response = await fetch(
       'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
@@ -203,7 +211,7 @@ const approval = (() => {
               ON priceListUdo.udf.z_f_co_dodavatel = p.businessPartner
               AND priceListUdo.udf.z_f_co_km IS NOT NULL
             WHERE p.businessPartner = '${businessPartnerId}'
-            AND (effort.startDateTime > '${since}' AND effort.startDateTime < '${until}')
+            AND (effort.udf.z_f_te_approvedate > '${since}' AND effort.udf.z_f_te_approvedate <= '${until}')
             AND (mileage IS NOT NULL AND effort IS NOT NULL)
             AND (sc.udf.z_f_sc_request_status = '${APPROVAL_STATUS.ChangeRequired}' OR sc.udf.z_f_sc_request_status = '${APPROVAL_STATUS.Empty}')
           `,
