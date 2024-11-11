@@ -36,7 +36,8 @@
       _shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, (event) => {
         console.debug('Received context');
         _context = JSON.parse(event);
-        _context_valid_until = Date.now() + _context.auth.expires_in * 1000 - 3000;
+        _context_valid_until = Date.now() + _context.auth?.expires_in * 1000 - 3000;
+        console.log('context valid until: ',_context_valid_until);
         rs(_context);
       });
     });
