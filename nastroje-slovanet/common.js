@@ -44,6 +44,7 @@
 
   async function getHeaders() {
     const context = await common.getContext();
+    console.log('CONTEXT: ', context);
     return {
       'Accept': 'application/json',
       'Authorization': `Bearer ${context.auth.access_token}`,
