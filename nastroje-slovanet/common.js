@@ -36,8 +36,12 @@
       _shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, (event) => {
         console.debug('Received context');
         _context = JSON.parse(event);
-        _context_valid_until = Date.now() + _context.auth?.expires_in * 1000 - 3000;
-        console.log('context valid until: ',_context_valid_until);
+        if (_context.auth !== undefined) {
+          _context_valid_until = Date.now() + _context.auth.expires_in * 1000 - 60_000; // -3000
+        } else if (_context.authToken !== undefined) {
+          _context_valid_until = Date.now() + 180_000;
+        }
+        
         rs(_context);
       });
     });
@@ -48,7 +52,7 @@
     console.log('CONTEXT: ', context);
     return {
       'Accept': 'application/json',
-      'Authorization': `Bearer ${context.auth.access_token}`,
+      'Authorization': `Bearer ${ context.auth !== undefined ? context.auth.access_token : context.authToken }`,
       'Content-Type': 'application/json',
       'X-Client-ID': CLIENT_ID,
       'X-Client-Version': CLIENT_VERSION,
