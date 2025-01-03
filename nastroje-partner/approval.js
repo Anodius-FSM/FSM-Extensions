@@ -437,6 +437,7 @@ const approval = (() => {
             <td class="fd-table__cell"></td>
             <td class="fd-table__cell"></td>
             <td class="fd-table__cell"></td>
+            <td class="fd-table__cell"></td>
           </tr>
         </table>
       `, 'text/html');
