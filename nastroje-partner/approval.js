@@ -388,7 +388,6 @@ const approval = (() => {
     // 16. 11. 2022, T. Fordos - start
     // Suma na schvalenie: sum(table.data[i].totalCost) allCostToApproval €   nettoDlzka
     if (table.data.length) {
-      console.log(table.data);
       for (let i = 0; i < table.data.length; i++) {
         allCostToApproval += table.data[i].totalCost;
         //2025.01.03. CRQ 37232
@@ -398,7 +397,6 @@ const approval = (() => {
           table.data[i]['nettoDlzka'] = table.data[i].dlzkaKalendarDni;
         }
       }
-      console.log('new data: ', table.data);
     }
 
     document.getElementById('approvalMoney').innerText = allCostToApproval > 0 ? `${allCostToApproval.toFixed(2)} €` : '';
