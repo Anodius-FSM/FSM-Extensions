@@ -127,6 +127,9 @@ const approval = (() => {
               sc.udf.z_f_sc_request_datum_vyjadrenia AS serviceCallCommentDate,
               sc.udf.z_f_sc_request_cena AS serviceCallCost,
               priceList.udf.z_f_co_km AS mKmCost,
+              a.udf.z_f_ac_dlzkabrutto AS dlzkaBrutto, 
+              a.udf.z_f_ac_dlzkanettoprac AS dlzkaPracovneDni, 
+              a.udf.z_f_ac_dlzkanettokal AS dlzkaKalendarDni,
               COALESCE(m.distance*priceList.udf.z_f_co_km, 0) AS mileageCost,
               COALESCE(te.udf.z_f_te_cena_final,0) AS effortCost,
               COALESCE(m.distance, 0) AS mileageDistance,
@@ -150,7 +153,7 @@ const approval = (() => {
             AND priceList.udf.z_f_co_km IS NOT NULL
             WHERE 
               (p.businessPartner = '${businessPartnerId}'
-              AND (te.udf.z_f_te_approvedate > '${since}' AND te.udf.z_f_te_approvedate <= '${until}')
+              AND (sc.udf.z_f_sc_closedatum > '${since}' AND sc.udf.z_f_sc_closedatum <= '${until}')
               AND ap.decisionStatus = 'APPROVED'
               AND sc.udf.z_f_sc_fixstav IN ('OK', 'OK_SYSTEM')
               AND (m IS NOT NULL AND te IS NOT NULL)) 
@@ -383,11 +386,19 @@ const approval = (() => {
     const domParser = new DOMParser();
 
     // 16. 11. 2022, T. Fordos - start
-    // Suma na schvalenie: sum(table.data[i].totalCost) allCostToApproval €
+    // Suma na schvalenie: sum(table.data[i].totalCost) allCostToApproval €   nettoDlzka
     if (table.data.length) {
+      console.log(table.data);
       for (let i = 0; i < table.data.length; i++) {
         allCostToApproval += table.data[i].totalCost;
+        //2025.01.03. CRQ 37232
+        if (table.data[i].dlzkaPracovneDni !== 'null') {
+          table.data[i]['nettoDlzka'] = table.data[i].dlzkaPracovneDni;
+        } else if (table.data[i].dlzkaKalendarDni !== 'null') {
+          table.data[i]['nettoDlzka'] = table.data[i].dlzkaKalendarDni;
+        }
       }
+      console.log('new data: ', table.data);
     }
 
     document.getElementById('approvalMoney').innerText = allCostToApproval > 0 ? `${allCostToApproval.toFixed(2)} €` : '';
@@ -444,6 +455,7 @@ const approval = (() => {
         'totalCost',
         'serviceCallCost',
         'serviceCallComment',
+        'nettoDlzka'
       ];
 
       const tds = trDocument.querySelectorAll('td');
