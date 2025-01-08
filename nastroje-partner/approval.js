@@ -447,14 +447,14 @@ const approval = (() => {
         'serviceCallTypeName',
         'customer',
         'serviceCallCostStatus',
+        'nettoDlzka',
         'effortDuration',
         'effortCost',
         'mileageDistance',
         'mileageCost',
         'totalCost',
         'serviceCallCost',
-        'serviceCallComment',
-        'nettoDlzka'
+        'serviceCallComment'
       ];
 
       const tds = trDocument.querySelectorAll('td');
