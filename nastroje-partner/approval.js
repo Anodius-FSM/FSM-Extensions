@@ -214,9 +214,9 @@ const approval = (() => {
               ON priceListUdo.udf.z_f_co_dodavatel = p.businessPartner
               AND priceListUdo.udf.z_f_co_km IS NOT NULL
             WHERE p.businessPartner = '${businessPartnerId}'
-             AND (effort.udf.z_f_te_approvedate > '${since}' AND effort.udf.z_f_te_approvedate <= '${until}')
+             AND (sc.udf.z_f_sc_closedatum > '${since}' AND sc.udf.z_f_sc_closedatum <= '${until}')
             AND (mileage IS NOT NULL AND effort IS NOT NULL)
-            AND (sc.udf.z_f_sc_request_status = '${APPROVAL_STATUS.ChangeRequired}' OR sc.udf.z_f_sc_request_status IS NULL )
+            AND (sc.udf.z_f_sc_request_status = '${APPROVAL_STATUS.ChangeRequired}' )
           `,
         }),
       },
