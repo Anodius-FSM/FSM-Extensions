@@ -148,7 +148,7 @@ const approval = (() => {
               ON te.id = ap.object.objectId
             JOIN UnifiedPerson p 
               ON p.id = ap.issuer
-            JOIN UdoValue priceList
+            LEFT JOIN UdoValue priceList
               ON priceList.udf.z_f_co_dodavatel = p.businessPartner 
             AND priceList.udf.z_f_co_km IS NOT NULL
             WHERE 
@@ -210,7 +210,7 @@ const approval = (() => {
               ON a = mileage.object
             LEFT JOIN TimeEffort effort
               ON a = effort.object
-            JOIN UdoValue priceListUdo
+            LEFT JOIN UdoValue priceListUdo
               ON priceListUdo.udf.z_f_co_dodavatel = p.businessPartner
               AND priceListUdo.udf.z_f_co_km IS NOT NULL
             WHERE p.businessPartner = '${businessPartnerId}'
