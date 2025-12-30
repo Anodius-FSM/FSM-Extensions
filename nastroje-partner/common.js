@@ -81,7 +81,7 @@
    */
   async function fetchUdfMeta(udoMetaName) {
     const response = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'UdfMeta.19;UdoMeta.9',
       }),
@@ -119,7 +119,7 @@
    */
   async function fetchUdfMetaByFieldName(fieldNames) {
     const response = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'UdfMeta.19',
       }),
@@ -153,7 +153,7 @@
    */
   async function fetchBusinessPartners(crowdType, personId) {
     const response = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'BusinessPartner.23;Person.24',
       }),
@@ -202,7 +202,7 @@
     if (cached) {
       return cached;
     }
-/**'https://eu.coresuite.com/api/query/v1?'*/
+/**'https://eu.fsm.cloud.sap/api/query/v1?'*/
 /** https://eu.fsm.cloud.sap/api/query/v1?account=slovanet_P1&company=Slovanet_prod&dtos=Person.25 */
     const response = await fetch(
       'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
@@ -255,7 +255,7 @@
     // const context = await common.getContext();
 
     // const responseUnifiedPersonId = await fetch(
-    //   'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+    //   'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
     //     ...await common.getSearchParams(),
     //     dtos: 'UnifiedPerson.12',
     //   }),
@@ -292,7 +292,7 @@
 
     // // //* calling the cloud-org-level-service api
     // const responseOrgLevel = await fetch(
-    //   'https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?' + new URLSearchParams({
+    //   'https://eu.fsm.cloud.sap/cloud-org-level-service/api/v1/levels/allocations?' + new URLSearchParams({
     //     unifiedPersonId: unifiedPersonIdWithDashes,
     //     includeSubLevels: false,
     //   }),
@@ -307,16 +307,16 @@
 
 
 
-// `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
+// `https://eu.fsm.cloud.sap/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
 
 /*
-    //https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=B78E5239-34A1-475E-AEF3-99329C68203A&includeSubLevels=false
+    //https://eu.fsm.cloud.sap/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=B78E5239-34A1-475E-AEF3-99329C68203A&includeSubLevels=false
     // unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`
     let hhh = await common.getHeadersForOrgLevel();
     console.log('headers  no credentials: ', hhh)
- // `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
+ // `https://eu.fsm.cloud.sap/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
     const responseOrgLevel = await fetch(
-      `https://eu.coresuite.com/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
+      `https://eu.fsm.cloud.sap/cloud-org-level-service/api/v1/levels/allocations?unifiedPersonId=${unifiedPersonIdWithDashes}&includeSubLevels=false`,
       {
         method: 'GET',
        /* credentials: 'include', */
@@ -333,7 +333,7 @@
 */
 
     const response = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'UdoMeta.9',
         pageSize: 1,
