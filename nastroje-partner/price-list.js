@@ -18,7 +18,7 @@
 
   async function fetchServiceCallTypeMap() {
     const response = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'ServiceCallType.15',
       }),
@@ -50,7 +50,7 @@
     let page = 1;
     while (true) {
       const response = await fetch(
-        'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+        'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
           ...await common.getSearchParams(),
           dtos: 'UdoValue.9;UdoMeta.9;BusinessPartner.23;ServiceCallType.15',
           pageSize: 1000,
@@ -190,7 +190,7 @@
 
     if (entriesToUpdate.length) {
       const responseForUpdate = await fetch(
-        'https://eu.coresuite.com/api/data/v4/UdoValue/bulk?' + new URLSearchParams({
+        'https://eu.fsm.cloud.sap/api/data/v4/UdoValue/bulk?' + new URLSearchParams({
           ...await common.getSearchParams(),
           dtos: 'UdoValue.9',
           forceUpdate: true,
@@ -224,7 +224,7 @@
 
     if (entriesToCreate.length) {
       const responseForCreate = await fetch(
-        'https://eu.coresuite.com/api/data/v4/UdoValue/bulk?' + new URLSearchParams({
+        'https://eu.fsm.cloud.sap/api/data/v4/UdoValue/bulk?' + new URLSearchParams({
           ...await common.getSearchParams(),
           dtos: 'UdoValue.9',
           forceUpdate: true,
@@ -258,7 +258,7 @@
 
     if (entriesToRemove.length) {
       const responseForDelete = await fetch(
-        'https://eu.coresuite.com/api/data/v4/UdoValue/bulk?' + new URLSearchParams({
+        'https://eu.fsm.cloud.sap/api/data/v4/UdoValue/bulk?' + new URLSearchParams({
           ...await common.getSearchParams(),
           forceDelete: true,
         }),
