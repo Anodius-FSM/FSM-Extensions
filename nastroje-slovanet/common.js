@@ -73,7 +73,7 @@
    */
   async function fetchUdfMeta(udoMetaName) {
     const response = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'UdfMeta.19;UdoMeta.9',
       }),
@@ -109,7 +109,7 @@
    */
   async function fetchUdfMetaByFieldName(fieldNames) {
     const response = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'UdfMeta.19',
       }),
@@ -143,7 +143,7 @@
    */
   async function fetchBusinessPartners(crowdType, personId) {
     const response = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'BusinessPartner.23;Person.24',
       }),
@@ -194,7 +194,7 @@
     }
 
     const response = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'Person.24',
       }),
@@ -243,7 +243,7 @@
      * 28.12.2022
      
     const responseUnifiedPersonId = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'UnifiedPerson.12',
       }),
@@ -264,7 +264,7 @@
     console.log('responseUnifiedPersonId:: ', await responseUnifiedPersonId.json());
 end of 28.12.2022*/
     const response = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'Person.24',
       }),
@@ -298,7 +298,7 @@ end of 28.12.2022*/
  */
 /*
     const response = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'UdoMeta.9',
         pageSize: 1,
