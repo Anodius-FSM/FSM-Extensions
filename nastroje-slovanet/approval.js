@@ -47,7 +47,7 @@ const approval = (() => {
    */
   async function fetchPeriods(businessPartnerId) {
     const response = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'UdoValue.9',
         pageSize: 1000,
@@ -101,7 +101,7 @@ const approval = (() => {
       .join(" AND ");
 
     const response = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'Activity.40;Approval.14;BusinessPartner.23;Mileage.17;ServiceCall.26;TimeEffort.16;UdoValue.9;UnifiedPerson.12',
         pageSize,
@@ -184,7 +184,7 @@ const approval = (() => {
     const until = getUntilDate(monthYear); //moment(monthYear, 'MM/YYYY').add(1, 'month').startOf('month').toISOString().replace(/\.000Z$/, 'Z');
 
     const response = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'Activity.40;BusinessPartner.23;Mileage.17;Person.24;ServiceAssignment.28;ServiceCall.26;TimeEffort.16;UdoValue.9',
         pageSize: 1,
@@ -639,7 +639,7 @@ const approval = (() => {
     }];
 
     const responseForUpdate = await fetch(
-      'https://eu.coresuite.com/api/data/v4/UdoValue/bulk?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/data/v4/UdoValue/bulk?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'UdoValue.9',
         forceUpdate: true,
@@ -706,7 +706,7 @@ const approval = (() => {
     }));
 
     const responseForScUpdate = await fetch(
-      'https://eu.coresuite.com/api/data/v4/ServiceCall/bulk?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/data/v4/ServiceCall/bulk?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'ServiceCall.26',
         forceUpdate: true,
@@ -736,7 +736,7 @@ const approval = (() => {
       }));
 
       const responseForTeUpdate = await fetch(
-        'https://eu.coresuite.com/api/data/v4/TimeEffort/bulk?' + new URLSearchParams({
+        'https://eu.fsm.cloud.sap/api/data/v4/TimeEffort/bulk?' + new URLSearchParams({
           ...await common.getSearchParams(),
           dtos: 'TimeEffort.16',
           forceUpdate: true,
@@ -827,7 +827,7 @@ const approval = (() => {
     }));
 
     const responseForUpdate = await fetch(
-      'https://eu.coresuite.com/api/data/v4/ServiceCall/bulk?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/data/v4/ServiceCall/bulk?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'ServiceCall.26',
         forceUpdate: true,
