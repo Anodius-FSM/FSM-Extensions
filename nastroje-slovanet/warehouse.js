@@ -45,7 +45,7 @@
       .join(" AND ");
 
     const response = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'BusinessPartner.23;Person.24;SerialNumber.11;Item.23;Warehouse.16;UdfMeta.19',
         pageSize,
@@ -103,7 +103,7 @@
     let page = 1;
     while (true) {
       const response = await fetch(
-        'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+        'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
           ...await common.getSearchParams(),
           dtos: 'BusinessPartner.23;Person.24;Warehouse.16',
           pageSize: 1000,
@@ -154,7 +154,7 @@
    */
   async function fetchPersonIdForBusinessPartner(businessPartnerId) {
     const response = await fetch(
-      'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'Person.24;BusinessPartner.23;SerialNumber.11;Warehouse.16',
       }),
@@ -412,7 +412,7 @@
     if (!updates.length) return;
 
     const responseForUpdate = await fetch(
-      'https://eu.coresuite.com/api/data/v4/SerialNumber/bulk?' + new URLSearchParams({
+      'https://eu.fsm.cloud.sap/api/data/v4/SerialNumber/bulk?' + new URLSearchParams({
         ...await common.getSearchParams(),
         dtos: 'SerialNumber.11',
         forceUpdate: true,
