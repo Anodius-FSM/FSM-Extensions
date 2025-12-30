@@ -23,7 +23,7 @@ async function getSearchParams() {
 
 async function fetchData(activityId) {
   const response = await fetch(
-    'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
+    'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
       ...await getSearchParams(),
       dtos: 'ServiceCall.26;Activity.39;BusinessPartner.23;Equipment.23;Address.21;Requirement.9;Tag.9',
       // pageSize: 1000,
